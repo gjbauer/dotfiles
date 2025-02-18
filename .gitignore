@@ -1,0 +1,7 @@
+*.o
+*.bak
+.DS_Store
+~*
+
+.bash_history
+.histfile

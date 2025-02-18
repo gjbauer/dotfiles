@@ -1,0 +1,7 @@
+[user]
+	email = gabeb1277@gmail.com
+	name = Gabriel Bauer
+[core]
+	excludesfile = ~/.gitignore
+[merge]
+	tool = meld
