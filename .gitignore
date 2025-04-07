@@ -7,3 +7,4 @@
 .histfile
 *.core
 .token
+*.plist
