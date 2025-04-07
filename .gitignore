@@ -8,3 +8,5 @@
 *.core
 .token
 *.plist
+stderr.txt
+stdout.txt
