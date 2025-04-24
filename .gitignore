@@ -12,3 +12,4 @@ stderr.txt
 stdout.txt
 ._*
 valgrind.out.core.*
+__pycache__/*
