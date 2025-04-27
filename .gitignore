@@ -13,3 +13,4 @@ stdout.txt
 ._*
 valgrind.out.core.*
 __pycache__/*
+.zsh_history
