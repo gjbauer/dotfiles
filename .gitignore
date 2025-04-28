@@ -2,7 +2,7 @@
 *.bak
 .DS_Store
 ~*
-
+*.dat
 .bash_history
 .histfile
 *.core
