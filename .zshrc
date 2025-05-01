@@ -104,3 +104,5 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias token="cat ~/.token"
 alias gr="grep -r"
+alias fuse="cd ~/Desktop/cs4310-proj2"
+alias rr="make clean && make read_root && ./read_root"
