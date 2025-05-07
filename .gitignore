@@ -18,3 +18,4 @@ nohup.out
 gmon.out
 data.nufs
 target/*
+mkfs
