@@ -17,3 +17,4 @@ __pycache__/*
 nohup.out
 gmon.out
 data.nufs
+target/*
