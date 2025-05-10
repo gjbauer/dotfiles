@@ -19,3 +19,4 @@ gmon.out
 data.nufs
 target/*
 mkfs
+.~lock.*
