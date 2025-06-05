@@ -20,3 +20,4 @@ data.nufs
 target/*
 mkfs
 .~lock.*
+*.tmp
