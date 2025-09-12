@@ -16,9 +16,10 @@ __pycache__/*
 .zsh_history
 nohup.out
 gmon.out
-data.nufs
 target/*
-mkfs
 .~lock.*
 *.tmp
 .aider*
+*.out
+*.aux
+*.log
