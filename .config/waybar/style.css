@@ -1,0 +1,20 @@
+/* Apply to all modules by default */
+* {
+    font-family: "JetBrainsMono Nerd Font", "Symbols Nerd Font", monospace;
+    font-size: 14px;
+    font-weight: normal;
+    min-height: 0;
+}
+
+/* Top Waybar */
+window.top#waybar {
+        background: #000000;
+        color: #fdfdfd;
+        opacity: 0.75;
+}
+
+#clock {
+    font-weight: bold;
+    margin-left: 20px;
+}
+
