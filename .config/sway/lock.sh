@@ -1,6 +1,6 @@
 #!/bin/sh
 
-swaylock \                                                                                                      26-01-13 - 1:14:2
+swaylock \
         --screenshots \
         --clock \
         --indicator \
