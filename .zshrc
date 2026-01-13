@@ -104,3 +104,4 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias token="cat ~/.token"
 alias gr="grep -r"
+alias lock="~/.config/sway/lock.sh"
