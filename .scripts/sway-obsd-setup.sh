@@ -15,12 +15,6 @@ usermod -G _seatd $user
 # Enable seatd
 rcctl enable seatd
 
-# Create XDG_RUNTIME_DIR
-mkdir -m 700 -p /run/user/$id
-
-# Change ownership of 
-chown $user:$user /run/user/$id
-
 exit
 
 return 0
