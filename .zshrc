@@ -4,6 +4,10 @@
 # Path to your Oh My Zsh installation.
 export ZSH="/usr/local/share/ohmyzsh"
 
+# Set up XDG_RUNTIME_DIR
+export XDG_RUNTIME_DIR=/tmp/run/$(id -u)
+mkdir -m 700 -p $XDG_RUNTIME_DIR
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
