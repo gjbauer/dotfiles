@@ -1,1 +1,2 @@
-doas service netif restart && doas service dhclient restart wlan0
+doas sh /etc/netstart
+doas rcctl restart wpa_supplicant
