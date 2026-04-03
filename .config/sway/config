@@ -2,6 +2,11 @@
 #
 # Read `man 5 sway` for a complete reference.
 
+input "type:keyboard" {
+    xkb_layout "fr"
+    xkb_variant "mac"
+}
+
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
