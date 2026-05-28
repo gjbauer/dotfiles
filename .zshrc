@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
 # Path to your Oh My Zsh installation.
-export ZSH="/usr/local/share/ohmyzsh"
+export ZSH="~/.oh-my-zsh"
 
 # Set up XDG_RUNTIME_DIR
 export XDG_RUNTIME_DIR=/tmp/run/$(id -u)
