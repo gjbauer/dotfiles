@@ -1,4 +1,7 @@
-# Copy this to ~/.config/sway/config and edit it to your liking.
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+exec systemctl --user stop xdg-desktop-portal
+exec systemctl --user start xdg-desktop-portal
+
 #
 # Read `man 5 sway` for a complete reference.
 
@@ -20,7 +23,7 @@ set $lock ~/.config/sway/pmgmt.sh
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/local/share/backgrounds/sway/)
-output * bg /usr/local/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg /usr/share/backgrounds/mendhak-Bluebells_Suspended_In_Time.jpg fill
 #
 # Example configuration:
 #
