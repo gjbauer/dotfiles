@@ -106,3 +106,5 @@ alias token="cat ~/.token"
 alias gr="grep -r"
 alias lock="~/.config/sway/lock.sh"
 alias restart-wifi="~/.scripts/restart-wifi.sh"
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
