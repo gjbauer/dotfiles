@@ -2,10 +2,17 @@
 #
 # Read `man 5 sway` for a complete reference.
 
-exec wlsunset -s 20:00 -S 07:00 -t 4000 -T 6500
+exec wlsunset -s 20:00 -S 07:00 -t 3000 -T 6500
 
 # class             border   background text     indicator child_border
 client.focused      #ffffff  #ffffff    #000000  #ffffff   #ffffff
+
+bindsym XF86MonBrightnessUp exec backlight -f /dev/backlight/backlight0 incr 10%
+bindsym XF86MonBrightnessDown exec backlight -f /dev/backlight/backlight0 decr 10%
+
+input * {
+	xkb_layout "fr"
+}
 
 ### Variables
 #
