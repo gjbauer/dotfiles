@@ -106,7 +106,7 @@ alias token="cat ~/.token"
 alias gr="grep -r"
 alias lock="~/.config/sway/lock.sh"
 alias restart-wifi="~/.scripts/restart-wifi.sh"
-alias serial="doas cu -l /dev/nmdm0B -s 115200"
+alias serial="doas picocom -b 115200 /dev/nmdm0B"
 
 # ssh-vm function to easily ssh into our development VMs
 ssh-vm() {
