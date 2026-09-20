@@ -106,3 +106,45 @@ alias token="cat ~/.token"
 alias gr="grep -r"
 alias lock="~/.config/sway/lock.sh"
 alias restart-wifi="~/.scripts/restart-wifi.sh"
+alias serial="doas cu -l /dev/nmdm0B -s 115200"
+
+# ssh-vm function to easily ssh into our development VMs
+ssh-vm() {
+    # Usage: ssh-vm vm_name [ssh_user]
+    local vm_name=$1
+    local user=${2:-dev}
+
+    # 1. Get the host tap interface assigned to this VM name via virsh
+    local tap_if=$(virsh -c "bhyve:///system" domiflist "$vm_name" 2>/dev/null | grep -E "tap|vnet" | awk '{print $1}')
+
+    if [ -z "$tap_if" ]; then
+        echo "Error: Could not find network interface for VM '$vm_name'."
+        return 1
+    fi
+
+    # 2. Get the MAC address of that specific interface from the host system
+    local mac=$(ifconfig "$tap_if" 2>/dev/null | grep ether | awk '{print $2}')
+
+    if [ -z "$mac" ]; then
+        echo "Error: Could not retrieve MAC address for interface $tap_if."
+        return 1
+    fi
+
+    # 3. Match the host MAC address to your active ARP table
+    local ip=$(arp -an | grep -i "$mac" | awk '{print $2}' | tr -d '()')
+
+    if [ -z "$ip" ]; then
+        # Fallback: Try matching the libvirt VM MAC address directly if host mapping fails
+        local vm_mac=$(virsh -c "bhyve:///system" domiflist "$vm_name" 2>/dev/null | grep -E "tap|vnet" | awk '{print $5}')
+        ip=$(arp -an | grep -i "$vm_mac" | awk '{print $2}' | tr -d '()')
+    fi
+
+    if [ -z "$ip" ]; then
+        echo "Error: IP address not found in host ARP cache. Try pinging the subnet or checking if VM is up."
+        return 1
+    fi
+
+    echo "Connecting to $vm_name ($ip) as $user..."
+    ssh "${user}@${ip}"
+}
+
