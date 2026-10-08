@@ -106,5 +106,7 @@ alias token="cat ~/.token"
 alias gr="grep -r"
 alias lock="~/.config/sway/lock.sh"
 alias restart-wifi="~/.scripts/restart-wifi.sh"
+alias serial="sudo picocom -b 115200 /dev/pts/0"
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
+export PATH="$PATH:$HOME/.local/bin"
