@@ -110,3 +110,45 @@ alias serial="sudo picocom -b 115200 /dev/pts/0"
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
 export PATH="$PATH:$HOME/.local/bin"
+
+# ssh-vm function to easily ssh into our development VMs
+ssh-vm() {
+    # Usage: ssh-vm vm_name [ssh_user]
+    local vm_name=$1
+    local user=${2:-dev}
+
+    # 1. Get the MAC address of the VM's network interface via virsh
+    # On Linux/KVM, domiflist shows the MAC in the "MAC" column directly
+    local mac=$(virsh domiflist "$vm_name" 2>/dev/null | awk '/network|bridge|ethernet/ {print $5; exit}')
+
+    if [ -z "$mac" ]; then
+        echo "Error: Could not find network interface for VM '$vm_name'."
+        return 1
+    fi
+
+    # 2. Look up the IP from the DHCP leases libvirt tracks
+    # This is far more reliable than scraping ARP on Linux
+    local ip=$(virsh net-dhcp-leases --all 2>/dev/null | awk -v mac="$mac" '
+        tolower($0) ~ tolower(mac) { split($5, a, "/"); print a[1]; exit }
+    ')
+
+    # 3. Fallback: check the ARP table for the MAC
+    if [ -z "$ip" ]; then
+        ip=$(ip neigh show | grep -i "$mac" | awk '{print $1}' | head -n1)
+    fi
+
+    # 4. Last resort: ping the VM (wakes ARP) then retry
+    if [ -z "$ip" ]; then
+        # Try to nudge the VM into the ARP cache by pinging its MAC via a broadcast
+        arping -c 2 -I "$(ip route | awk '/default/ {print $5; exit}')" "$mac" >/dev/null 2>&1
+        ip=$(ip neigh show | grep -i "$mac" | awk '{print $1}' | head -n1)
+    fi
+
+    if [ -z "$ip" ]; then
+        echo "Error: IP address not found. Ensure the VM is running and on a DHCP-enabled network."
+        return 1
+    fi
+
+    echo "Connecting to $vm_name ($ip) as $user..."
+    ssh "${user}@${ip}"
+}
