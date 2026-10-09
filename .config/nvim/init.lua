@@ -4,6 +4,17 @@ vim.cmd([[
 
 local fzf = require('fzf-lua')
 
+require('fzf-lua').setup({
+  files = {
+    multiprocess = false,
+  },
+  grep = {
+    multiprocess = false,
+  },
+  -- apply to everything at once:
+  -- or use the top-level default
+})
+
 -- Open file finder (git files or files)
 vim.keymap.set('n', '<leader>ff', fzf.files, { desc = 'Fzf files' })
 
