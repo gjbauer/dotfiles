@@ -20,6 +20,11 @@ set $term konsole
 set $menu fuzzel
 
 set $lock ~/.config/sway/pmgmt.sh
+
+input * {
+	xkb_layout "fr"
+}
+
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/local/share/backgrounds/sway/)
